@@ -1,27 +1,43 @@
 <% layout("layouts/boilerplate") %>
 
-<div class="row">
+<br>
 
-    <div id="carouselExample" class="carousel slide ">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-        <img src=<%= images[0] %> class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-        <img src=<%= images[1] %> class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-        <img src=<%= images[2] %> class="d-block w-100" alt="...">
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
+<h1 class="text-center">Wander Lust</h1>
+
+<br><br>
+
+   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 justify-content-evenly">
+       
+    <% let count = 0 %>
+
+        <% for(let listing of listings) { %>  
+        
+            <a href="/listings/<%= listing.id %>" style="text-decoration: none;">
+
+                <div class="card col" >
+                    <img src=<%= listing.image %> class="card-img-top" alt="listing-image">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <b><%= listing.title %> <br></b>
+                            &#8360; <%= listing.price.toLocaleString("en-pk") %> / night
+                        </p>
+                    </div>
+                </div>
+
+            </a>
+
+
+            <% count++; if(count == 3) { break;}%>
+
+        <% } %>
+
     </div>
 
-</div>
+    <br>
+
+    <form method="GET" action="/listings">
+
+        <button class="btn btn-dark add-btn col-12">View All Listings!</button>
+            
+    </form>
+    <br><br>
