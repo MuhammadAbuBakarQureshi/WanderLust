@@ -45,18 +45,12 @@ app.listen(port, () => {
 
 // GET requests
 
-app.get("/", (req, res) => {
+app.get("/", wrapAsync( async (req, res) => {
 
-    const images = [
-        "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8aG90ZWxzfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+    let listings = await Listing.find();
 
-        "https://images.unsplash.com/photo-1470165301023-58dab8118cc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGxvZGdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-
-        "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGxha2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60"
-    ];
-
-    res.render("listings/root.ejs", {images});
-});
+    res.render("listings/root.ejs", {listings});
+}));
 
 app.get("/listings", wrapAsync( async (req, res) => {
   
