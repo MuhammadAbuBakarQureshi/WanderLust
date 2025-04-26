@@ -46,6 +46,8 @@ body {
     width: 100% !important;
 
     border-radius: 1rem !important;
+    
+    object-fit: cover !important;
 }
 
 .card-img-top:hover {
@@ -73,12 +75,13 @@ body {
 
 /* SHOW PAGE  */
 
-.show-img{
+.show-img {
 
     height: 30vh !important;
+
 }
 
-.btns{
+.btns {
 
     display: flex;
 }
