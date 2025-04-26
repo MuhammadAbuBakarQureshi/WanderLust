@@ -1,0 +1,21 @@
+footer {
+
+    height: 130px;
+    width: 100vw;
+
+    background-color: #e9e7e7;
+
+    align-content: center;
+
+}
+
+.footer-components {
+
+    display: flex;
+    justify-content: center;
+}
+
+.fa-brands{
+
+    margin: 0 15px 0 15px;
+}
