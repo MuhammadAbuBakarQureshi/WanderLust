@@ -7,16 +7,16 @@
     <div class="row">
 
 
-        <div class="offset-sm-3">
+        <div>
 
             <br><br>   
-            <h1><%= listing.title %></h1>
+            <h1 class="offset-md-3"><%= listing.title %></h1>
             <br>
 
         </div>
 
 
-        <div class="col-lg-6 col-md-7 offset-sm-3">
+        <div class="col-lg-6 col-md-7 offset-md-3">
 
             <div class="card col" >        
                 <img src=<%= listing.image %> class="card-img-top show-img" alt="listing-image">
@@ -33,22 +33,26 @@
 
         </div>
 
-        </div>
+    </div>
 
-        <div class="btns">
+    <div class="btns">
 
-            <a href="/listings/<%= listing.id %>/edit" class="btn add-btn btn-dark col-md-1 offset-sm-3">Edit</a>
+        <a href="/listings/<%= listing.id %>/edit" class="btn add-btn btn-dark col-md-1 offset-sm-3">Edit</a>
 
-            <form method="POST" action="/listings/<%= listing.id %>?_method=DELETE">
+        <form method="POST" action="/listings/<%= listing.id %>?_method=DELETE">
 
-                <button class="btn btn-dark offset-4">Delete</button>
+            <button class="btn btn-dark offset-4">Delete</button>
 
-            </form>
+        </form>
 
-        </div>
-
+    </div>
 
     <br><br>
-</div>
+
+    <hr>
+
+    <%- include("../includes/addreview.ejs") %>
+
+    <br>
 
 </body>
