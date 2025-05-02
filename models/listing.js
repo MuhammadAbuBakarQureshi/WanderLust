@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const Review = require("./review");
+
 const Schema = mongoose.Schema;
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
@@ -52,6 +54,16 @@ const listingSchema = new Schema({
       ref: "Review"
     }
   ]
+});
+
+listingSchema.post("findOneAndDelete", async (listing, next) => {
+
+    if(listing.reviews.length){
+
+        await Review.deleteMany({ _id: {$in: listing.reviews}});
+    }
+
+    next();
 });
 
 
