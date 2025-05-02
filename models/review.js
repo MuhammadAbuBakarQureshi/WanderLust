@@ -4,7 +4,7 @@ const Schema  = mongoose.Schema;
 
 const reviewSchema = Schema({
 
-    comment: string,
+    comment: String,
     rating: {
 
         type: Number,
