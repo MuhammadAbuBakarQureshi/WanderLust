@@ -46,24 +46,13 @@
         </form>
 
     </div>
-
-
-    <br><br>
-    
-    <% for(review of listing.reviews) {%>
-
-        <p><%= review %></p>
-
-        <br>
-    
-    <% } %>
-
-    <br><br>
-
+    <br>
     <hr>
 
     <%- include("../includes/addreview.ejs") %>
 
-    <br>
+    <hr>
+
+    <%- include("../includes/showreviews.ejs") %>
 
 </body>
