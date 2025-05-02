@@ -118,11 +118,15 @@ app.post(
   wrapAsync(async (req, res) => {
     
     let { id } = req.params;
+    let listing = await Listing.findById(id);
     let review = new Review(req.body.review);
+
+    listing.reviews.push(review);
+
     review.save();
-    let listing = await Listing.findByIdAndUpdate(id, {$push: {reviews: review}});
-    
-    res.redirect("/listings");
+    listing.save();
+
+    res.redirect(`/listings/${id}`);
   })
 );
 
