@@ -33,7 +33,7 @@ body {
 /* Cards */
 
 
-.card {
+.listing-card {
 
     border: none !important;
     margin-bottom: 2rem;
@@ -93,4 +93,5 @@ body {
 .review-box{
 
     background-color: rgb(219, 219, 219) !important;
+    border: 1px solid grey !important;
 }
