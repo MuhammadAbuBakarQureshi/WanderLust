@@ -10,7 +10,7 @@
         <div class="offset-sm-3">
 
             <br><br>   
-            <h1>Listing Details</h1>
+            <h1><%= listing.title %></h1>
             <br>
 
         </div>
@@ -22,7 +22,7 @@
                 <img src=<%= listing.image %> class="card-img-top show-img" alt="listing-image">
                 <div class="card-body">
                     <p class="card-text">
-                        <b><%= listing.title %></b><br><br>                
+                        <br>
                         <%= listing.description %> <br><br>
                         &#8360; <%= listing.price.toLocaleString("en-pk") %> / night <br><br>
                         <%= listing.location %> <br>
