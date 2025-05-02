@@ -85,3 +85,12 @@ body {
 
     display: flex;
 }
+
+
+
+/* Reviews */
+
+.review-box{
+
+    background-color: rgb(219, 219, 219) !important;
+}
