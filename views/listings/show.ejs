@@ -10,15 +10,15 @@
         <div>
 
             <br><br>   
-            <h1 class="offset-md-3"><%= listing.title %></h1>
+            <h1 class="offset-lg-2"><%= listing.title %></h1>
             <br>
 
         </div>
 
 
-        <div class="col-lg-6 col-md-7 offset-md-3">
+        <div class="col-lg-8  col-md-10 offset-lg-2">
 
-            <div class="card col" >        
+            <div class="card col listing-card" >        
                 <img src=<%= listing.image %> class="card-img-top show-img" alt="listing-image">
                 <div class="card-body">
                     <p class="card-text">
@@ -37,7 +37,7 @@
 
     <div class="btns">
 
-        <a href="/listings/<%= listing.id %>/edit" class="btn add-btn btn-dark col-md-1 offset-sm-3">Edit</a>
+        <a href="/listings/<%= listing.id %>/edit" class="btn add-btn btn-dark col-md-1 offset-sm-2">Edit</a>
 
         <form method="POST" action="/listings/<%= listing.id %>?_method=DELETE">
 
