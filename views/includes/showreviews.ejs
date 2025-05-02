@@ -1,0 +1,41 @@
+
+<div class="col col-md-6 offset-md-3">
+
+    <%if(listing.reviews.length){%>
+
+    <% for(review of listing.reviews) {%>
+
+        <div class="review-box form-control mb-3 mt-4">
+
+            <div style="display: flex;">
+
+                <% for(let i = 0; i < review.rating; i++){ %>
+                    
+                    <p>⭐</p>
+
+                <% } %>
+
+            </div>
+
+            <p><%= review.comment %></p>
+
+            <p  class="text-end"><%= review.created_at.toLocaleString().slice(0, 8) %></p>
+
+        </div>
+
+    <% } %>
+
+
+    <% }else{ %>
+
+        <div>
+
+            <p>Be first to add review!</p>
+
+        </div>
+        
+    <%}%>
+
+    <br>
+
+</div>
