@@ -13,7 +13,7 @@
 
                             <h5 class="card-title">John Doe</h5>
 
-                            <form method="delete" action="/listings/<%=listing.id%>/reviews/<%=review.id%> ">
+                            <form method="POST" action="/listings/<%=listing.id%>/reviews/<%=review.id%>?_method=DELETE">
 
                                 <button style="border: none; background: none;"><i class="fa-solid fa-trash"></i></button>
 
