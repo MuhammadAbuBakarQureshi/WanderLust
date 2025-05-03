@@ -92,6 +92,8 @@ body {
 
 .review-box{
 
-    background-color: rgb(219, 219, 219) !important;
-    border: 1px solid grey !important;
+    background-color: rgba(241, 233, 233, 0.377) !important;
+    /* border: 1px solid grey !important; */
+    border: none !important;
+    padding: 0px 10px 0px 10px;
 }
