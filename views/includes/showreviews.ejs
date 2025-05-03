@@ -1,80 +1,48 @@
 
-    <%if(listing.reviews.length){%>
-
-    <div class="offset-lg-2">
-
-    <% for(review of listing.reviews) {%>
-
-        <div class="review-box form-control mb-3 mt-4">
-
-            <div style="display: flex;">
-
-                <% for(let i = 0; i < review.rating; i++){ %>
-
-                    <h6 class="card-subtitle mb-1 text-body-secondary" style="font-size: x-small;">⭐</h6>
-
-                <% } %>
-
-            </div>
-
-
-            <p class="card-text mb-0"><%= review.comment %></p>
-            
-            <h6  class="text-end " style="font-size: x-small;"><%= review.created_at.toLocaleString().slice(0, 8) %></h6>
-
-                
-            <form method="delete" action="/listings/<%=listing.id%>/reviews/<%=review.id%> ">
-
-                <button class="btn btn-dark">Delete</button>
-
-            </form>
-
-        </div>
+   <div class="row row-cols-lg-2 justify-content-between offset-lg-2">
         
+        <% for(let review of listing.reviews) { %>  
+        
+            <div>
+        
+                <div class="card col mb-3 review-box" >
 
-    <% } %>
+                    <div class="card-body">
+                
+                        <div style="display: flex; justify-content: space-between;">
+
+                            <h5 class="card-title">John Doe</h5>
+
+                            <form method="delete" action="/listings/<%=listing.id%>/reviews/<%=review.id%> ">
+
+                                <button style="border: none; background: none;"><i class="fa-solid fa-trash"></i></button>
+
+                            </form>
+
+                        </div>
+
+
+                        <div style="display: flex;">
+
+                            <% for(let i = 0; i < review.rating; i++){ %>
+
+                                <h6 class="card-subtitle mb-1 text-body-secondary" style="font-size: x-small;">⭐</h6>
+
+                            <% } %>
+
+                        </div>
+
+
+                        <p class="card-text mb-0"><%= review.comment %></p>
+                        
+                        <h6  class="text-end " style="font-size: x-small;"><%= review.created_at.toLocaleString().slice(0, 8) %></h6>
+
+                    </div>
+                
+                </div>
+
+             </div>
+        
+         <% } %>
 
     </div>
-
-    <% }else{ %>
-
-        <div>
-
-            <p>Be the first to add a review!</p>
-
-        </div>
-        
-    <%}%>
-
-    <br>
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-        <div class="review-box form-control mb-3 mt-4">
-
-            <div style="display: flex;">
-
-                <% for(let i = 0; i < review.rating; i++){ %>
-
-                    <h6 class="card-subtitle mb-1 text-body-secondary" style="font-size: x-small;">⭐</h6>
-
-                <% } %>
-
-            </div>
-
-
-            <p class="card-text mb-0"><%= review.comment %></p>
-            
-            <h6  class="text-end " style="font-size: x-small;"><%= review.created_at.toLocaleString().slice(0, 8) %></h6>
-
-        </div> -->
