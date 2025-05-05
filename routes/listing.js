@@ -5,35 +5,23 @@ const Review = require("../models/review");
 
 const ExpressError = require("../utils/ExpressError");
 const wrapAsync = require("../utils/wrapAsync");
-const schema = require("../schema");
+const {listingSchema} = require("../schema");
+
+// import { listingSchema } from "../schema";
 
 const router = express.Router();
 
 
 
 const validateListing = (req, res, next) => {
-  let { error } = schema.listingSchema.validate(req.body);
+  let { error } = listingSchema.validate(req.body);
 
   if (error) {
     throw new ExpressError(400, error);
   } else {
     next();
   }
-};
-
-const validateReview = (req, res, next) => {
-
-    let {error} = schema.reviewSchema.validate(req.body);
-
-    if(error){
-
-        throw new ExpressError(400, error);
-    }else{
-
-        next();
-    }
-}
-
+}; 
 
 
 router.get(
@@ -84,23 +72,6 @@ router.post(
   })
 );
 
-router.post(
-  "/:id/reviews",
-  validateReview,
-  wrapAsync(async (req, res) => {
-    
-    let { id } = req.params;
-    let listing = await Listing.findById(id);
-    let review = new Review(req.body.review);
-
-    listing.reviews.push(review);
-
-    review.save();
-    listing.save();
-
-    res.redirect(`/listings/${id}`);
-  })
-);
 
 // PUT requests
 
@@ -137,15 +108,5 @@ router.delete(
     res.redirect("/listings");
   })
 );
-
-router.delete("/:id/reviews/:reviewId", wrapAsync(async (req, res) => {
-
-  let {id, reviewId} = req.params;
-
-  await Listing.findByIdAndUpdate(id, {$pull: {reviews: reviewId}});
-  await Review.findByIdAndDelete(reviewId);
-
-  res.redirect(`/listings/${id}`);
-}));
 
 module.exports = router;
