@@ -2,17 +2,15 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
-const ejs = require("ejs");
 const ejsMate = require("ejs-mate");
 
 const Listing = require("./models/listing");
-const Review = require("./models/review");
-
-const listings = require("./routes/listing.js")
 
 const ExpressError = require("./utils/ExpressError");
 const wrapAsync = require("./utils/wrapAsync");
-const schema = require("./schema");
+
+const listings = require("./routes/listing.js");
+const reviews = require("./routes/reviews.js");
 
 const port = 8080;
 
@@ -26,26 +24,21 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 
-// Starts server
-
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
-});
-
 
 // root
 
-// app.get(
-//   "/",
-//   wrapAsync(async (req, res) => {
-//     let listings = await Listing.find();
+app.get(
+  "/",
+  wrapAsync(async (req, res) => {
+    let listings = await Listing.find();
 
-//     res.render("listings/root.ejs", { listings });
-//   })
-// );
+    res.render("listings/root.ejs", { listings });
+  })
+);
 
 
 app.use("/listings", listings);
+app.use("/listings/:id/reviews", reviews);
 
 
 // For all requests
@@ -57,7 +50,13 @@ app.use((req, res, next) => {
 ////////////// Middlewares
 
 app.use((err, req, res, next) => {
+  
   let { status = 500, message = "Something went wrong" } = err;
-
   res.status(status).render("listings/errors.ejs", { message });
+});
+
+// Starts server
+
+app.listen(port, () => {
+  console.log(`App listening on port ${port}`);
 });
