@@ -3,6 +3,8 @@ const path = require("path");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
+const session = require("express-session");
+const flash = require("connect-flash");
 
 const Listing = require("./models/listing");
 
@@ -11,6 +13,7 @@ const wrapAsync = require("./utils/wrapAsync");
 
 const listings = require("./routes/listing.js");
 const reviews = require("./routes/reviews.js");
+
 
 const port = 8080;
 
@@ -24,6 +27,21 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 
+const sessionOptions = {
+
+  secret: "secretcode",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    httpOnly: true
+  }
+}
+
+app.use(session(sessionOptions));
+app.use(flash());
 
 // root
 
@@ -36,6 +54,11 @@ app.get(
   })
 );
 
+app.use((req, res, next) => {
+
+  res.locals.success = req.flash("success");
+  next();
+})
 
 app.use("/listings", listings);
 app.use("/listings/:id/reviews", reviews);
