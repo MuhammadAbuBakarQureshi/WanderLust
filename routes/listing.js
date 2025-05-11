@@ -40,6 +40,7 @@ router.get("/new", (req, res) => {
 router.get(
   "/:id",
   wrapAsync(async (req, res) => {
+    
     let { id } = req.params;
 
     const listing = await Listing.findById(id).populate("reviews");
@@ -67,6 +68,8 @@ router.post(
   wrapAsync(async (req, res, next) => {
     let newListing = new Listing(req.body.listing);
     let savedNewListing = await newListing.save();
+
+    req.flash("success", "Listing is added successfully!");
 
     res.redirect(`/listings/${savedNewListing._id}`);
   })
