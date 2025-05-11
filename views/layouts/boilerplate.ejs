@@ -23,6 +23,16 @@
 
     <div class="container">
 
+        <% if(success.length) { %>
+
+            <div class="alert alert-success" role="alert">
+
+                <%=success%>
+
+            </div>
+
+        <% } %>
+
         <%- body %>
 
     </div>
