@@ -34,7 +34,7 @@ router.get(
 );
 
 router.get("/new", (req, res) => {
-  
+
   res.render("listings/new.ejs");
 });
 
@@ -48,7 +48,7 @@ router.get(
 
     if(!listing){
 
-      req.flash("error", "Listing not found");
+      req.flash("error", "Listing not found 😢");
       return res.redirect("/listings");
     }
 
@@ -65,7 +65,7 @@ router.get(
 
     if (!listing) {
 
-      req.flash("error", "Listing not found");
+      req.flash("error", "Listing not found 😢");
       return res.redirect("/listings");
 
     }
