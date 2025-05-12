@@ -97,3 +97,27 @@ body {
     border: none !important;
     padding: 0px 5px 0px 5px;
 }
+
+
+
+/* Flash */
+
+.flash-alert {
+
+    position: absolute !important;
+
+    @media (max-width: 570px) {
+
+        width: 100% !important;
+    }
+}
+
+.success-flash {
+
+    background-color: rgba(209, 231, 221, 0.493) !important;
+}
+
+.danger-flash {
+
+    background-color: rgba(248, 215, 218, 0.493) !important;
+}
