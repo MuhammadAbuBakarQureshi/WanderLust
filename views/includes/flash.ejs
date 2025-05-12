@@ -1,0 +1,31 @@
+<% if(success.length) { %>
+
+    <div class="offset-lg-9 offset-md-7 offset-sm-6">
+
+        <div class="alert alert-success alert-dismissible fade show flash-alert success-flash" role="alert">
+
+            <%=success%>
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+        </div>
+
+    </div>
+
+<% } %>
+
+<% if(error.length) { %>
+
+    <div class="offset-lg-9 offset-md-7 offset-sm-6">
+
+        <div class="alert alert-danger alert-dismissible fade show flash-alert danger-flash" role="alert">
+
+            <%=error%>
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+        </div>
+
+    </div>
+
+<% } %>
