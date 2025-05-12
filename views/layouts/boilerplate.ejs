@@ -21,17 +21,9 @@
 
     <%- include("../includes/navbar.ejs") %>
 
+    <%- include("../includes/flash.ejs") %>
+
     <div class="container">
-
-        <% if(success.length) { %>
-
-            <div class="alert alert-success" role="alert">
-
-                <%=success%>
-
-            </div>
-
-        <% } %>
 
         <%- body %>
 
@@ -45,6 +37,8 @@
     <script src="/js/validation-script.js"></script>
 
     <script src="/js/themes.js"></script>
+
+    <script src="/js/flash.js"></script>
 
 </body>
 </html>
