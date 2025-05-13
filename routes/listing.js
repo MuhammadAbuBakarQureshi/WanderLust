@@ -7,7 +7,7 @@ const ExpressError = require("../utils/ExpressError");
 const wrapAsync = require("../utils/wrapAsync");
 const {listingSchema} = require("../schema");
 
-// import { listingSchema } from "../schema";
+const {isLoggedIn} = require("../middleware.js");
 
 const router = express.Router();
 
@@ -23,7 +23,6 @@ const validateListing = (req, res, next) => {
   }
 }; 
 
-
 router.get(
   "/",
   wrapAsync(async (req, res) => {
@@ -33,7 +32,7 @@ router.get(
   })
 );
 
-router.get("/new", (req, res) => {
+router.get("/new", isLoggedIn, (req, res) => {
 
   res.render("listings/new.ejs");
 });
@@ -58,16 +57,15 @@ router.get(
 
 router.get(
   "/:id/edit",
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
 
     let listing = await Listing.findById(id);
 
     if (!listing) {
-
       req.flash("error", "Listing not found 😢");
       return res.redirect("/listings");
-
     }
 
     res.render("listings/edit.ejs", { listing });
@@ -78,6 +76,7 @@ router.get(
 
 router.post(
   "/",
+  isLoggedIn,
   validateListing,
   wrapAsync(async (req, res, next) => {
     let newListing = new Listing(req.body.listing);
@@ -94,6 +93,7 @@ router.post(
 
 router.put(
   "/:id",
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     if (!req.body) {
       throw new ExpressError(400, "Send valid data");
@@ -119,12 +119,13 @@ router.put(
 
 router.delete(
   "/:id",
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
 
     await Listing.findByIdAndDelete(id);
 
-    req.flash("success", "Listing is deleted successfully!")
+    req.flash("success", "Listing is deleted successfully!");
 
     res.redirect("/listings");
   })
