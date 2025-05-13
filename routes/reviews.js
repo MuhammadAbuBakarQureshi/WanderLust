@@ -28,9 +28,6 @@ router.post(
   wrapAsync(async (req, res) => {
     let { id } = req.params;
 
-    console.log(id);
-    console.log(req.body.review);
-
     let listing = await Listing.findById(id);
     let review = new Review(req.body.review);
 
@@ -48,9 +45,6 @@ router.post(
 router.delete("/:reviewId", wrapAsync(async (req, res) => {
 
   let {id, reviewId} = req.params;
-
-  console.log(id);
-  console.log(reviewId);
 
   await Listing.findByIdAndUpdate(id, {$pull: {reviews: reviewId}});
   await Review.findByIdAndDelete(reviewId);
