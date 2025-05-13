@@ -71,6 +71,15 @@ app.get("/demouser", async (req, res) => {
 
 // root
 
+app.use((req, res, next) => {
+
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  res.locals.user = req.user;
+  next();
+})
+
+
 app.get(
   "/",
   wrapAsync(async (req, res) => {
@@ -79,13 +88,6 @@ app.get(
     res.render("listings/root.ejs", { listings });
   })
 );
-
-app.use((req, res, next) => {
-
-  res.locals.success = req.flash("success");
-  res.locals.error = req.flash("error");
-  next();
-})
 
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
