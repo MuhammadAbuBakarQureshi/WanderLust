@@ -14,8 +14,9 @@ const User = require("./models/user.js");
 const ExpressError = require("./utils/ExpressError");
 const wrapAsync = require("./utils/wrapAsync");
 
-const listings = require("./routes/listing.js");
-const reviews = require("./routes/reviews.js");
+const listingRouter = require("./routes/listing.js");
+const reviewRouter = require("./routes/reviews.js");
+const userRouter = require("./routes/user.js");
 
 const port = 8080;
 
@@ -86,9 +87,9 @@ app.use((req, res, next) => {
   next();
 })
 
-app.use("/listings", listings);
-app.use("/listings/:id/reviews", reviews);
-
+app.use("/listings", listingRouter);
+app.use("/listings/:id/reviews", reviewRouter);
+app.use("/", userRouter);
 
 // For all requests
 
