@@ -5,8 +5,11 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const session = require("express-session");
 const flash = require("connect-flash");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
 
 const Listing = require("./models/listing");
+const User = require("./models/user.js");
 
 const ExpressError = require("./utils/ExpressError");
 const wrapAsync = require("./utils/wrapAsync");
@@ -14,10 +17,20 @@ const wrapAsync = require("./utils/wrapAsync");
 const listings = require("./routes/listing.js");
 const reviews = require("./routes/reviews.js");
 
-
 const port = 8080;
 
 const app = express();
+
+const sessionOptions = {
+  secret: "secretcode",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+  },
+};
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -27,21 +40,33 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 
-const sessionOptions = {
-
-  secret: "secretcode",
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-
-    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-    httpOnly: true
-  }
-}
-
 app.use(session(sessionOptions));
 app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// Demo User
+
+app.get("/demouser", async (req, res) => {
+
+  let fakeUser = new User({
+
+    username: "bob",
+    email: "bob@gmail.com"
+  });
+
+  let registeredUser = await User.register(fakeUser, "hello");
+
+  console.log(registeredUser);
+  
+  res.send(registeredUser);  
+});
+
 
 // root
 
