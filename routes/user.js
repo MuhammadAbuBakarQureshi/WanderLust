@@ -7,6 +7,9 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const User = require("../models/user.js");
 const passport = require("passport");
 
+
+// signup requests
+
 router.get("/signup", (req, res) => {
   res.render("users/signup.ejs");
 });
@@ -52,5 +55,22 @@ router.post(
     res.redirect("/listings");
   })
 );
+
+
+// logout requests
+
+router.get("/logout", (req, res, next) => {
+
+    req.logout((err) => {
+
+        if(err){
+
+            return next(err);
+        }
+
+        req.flash("success", "You are logged out");
+        res.redirect("/listings");
+    })
+})
 
 module.exports = router;
