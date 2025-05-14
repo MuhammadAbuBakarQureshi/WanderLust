@@ -21,13 +21,15 @@
             <div class="card col listing-card" >        
                 <img src=<%= listing.image %> class="card-img-top show-img" alt="listing-image">
                 <div class="card-body">
-                    <p class="card-text">
-                        <br>
-                        <%= listing.description %> <br><br>
-                        &#8360; <%= listing.price.toLocaleString("en-pk") %> / night <br><br>
-                        <%= listing.location %> <br>
-                        <%= listing.country %> <br>
-                    </p>
+                        <p class="card-text">Owned by <i><%= listing.owner.username %></i></p>
+                        
+                        <p class="card-text"><%= listing.description %></p>
+
+                        <p class="card-text">&#8360; <%= listing.price.toLocaleString("en-pk") %> / night</p>
+
+                        <p class="card-text"><%= listing.location %></p>
+
+                        <p class="card-text"><%= listing.country %></p>
                 </div>
             </div>
 
