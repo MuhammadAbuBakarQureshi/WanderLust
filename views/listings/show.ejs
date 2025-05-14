@@ -39,6 +39,8 @@
 
     <div class="btns">
 
+        <% if(user && user._id.equals(listing.owner._id)) {%>
+
         <a href="/listings/<%= listing.id %>/edit" class="btn add-btn btn-dark col-md-1 offset-sm-2">Edit</a>
 
         <form method="POST" action="/listings/<%= listing.id %>?_method=DELETE">
@@ -47,8 +49,10 @@
 
         </form>
 
+        
+        <% } %>
+
     </div>
-    <br>
     <hr>
 
     <%- include("../includes/addreview.ejs") %>
