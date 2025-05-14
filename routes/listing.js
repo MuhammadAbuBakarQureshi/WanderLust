@@ -43,7 +43,7 @@ router.get(
     
     let { id } = req.params;
 
-    const listing = await Listing.findById(id).populate("reviews");
+    const listing = await Listing.findById(id).populate("reviews").populate("owner");
 
     if(!listing){
 
@@ -80,6 +80,7 @@ router.post(
   validateListing,
   wrapAsync(async (req, res, next) => {
     let newListing = new Listing(req.body.listing);
+    newListing.owner = req.user._id;
     let savedNewListing = await newListing.save();
 
     req.flash("success", "New Listing is added successfully!");
