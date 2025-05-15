@@ -6,16 +6,18 @@ const Review = require("../models/review");
 
 const wrapAsync = require("../utils/wrapAsync");
 
-const {validateReview} = require("../middleware.js");
+const {validateReview, isLoggedIn} = require("../middleware.js");
 
 router.post(
   "/",
+  isLoggedIn,
   validateReview,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
 
     let listing = await Listing.findById(id);
     let review = new Review(req.body.review);
+    review.author = req.user._id;
 
     listing.reviews.push(review);
 
