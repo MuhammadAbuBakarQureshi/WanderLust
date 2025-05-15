@@ -13,11 +13,16 @@
 
                             <h5 class="card-title"><%= review.author.username %></h5>
 
-                            <form method="POST" action="/listings/<%=listing.id%>/reviews/<%=review.id%>?_method=DELETE">
+                            <% if(user && user._id.equals(review.author._id)) {%>
 
-                                <button style="border: none; background: none;"><i class="fa-solid fa-trash"></i></button>
+                                <form method="POST" action="/listings/<%=listing.id%>/reviews/<%=review.id%>?_method=DELETE">
 
-                            </form>
+                                    <button style="border: none; background: none;"><i class="fa-solid fa-trash"></i></button>
+
+                                </form>
+
+                            <% } %>
+                            
 
                         </div>
 
@@ -34,7 +39,7 @@
 
                         <p class="card-text mb-0 mt-2"><%= review.comment %></p>
                         
-                        <h6  class="text-end " style="font-size: x-small;"><%= review.created_at.toLocaleString().slice(0, 8) %></h6>
+                        <h6  class="text-end " style="font-size: x-small;"><%= review.created_at.toLocaleString().slice(0, 9) %></h6>
 
                     </div>
                 
