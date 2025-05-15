@@ -11,7 +11,7 @@
                 
                         <div style="display: flex; justify-content: space-between;">
 
-                            <h5 class="card-title">John Doe</h5>
+                            <h5 class="card-title"><%= review.author.username %></h5>
 
                             <form method="POST" action="/listings/<%=listing.id%>/reviews/<%=review.id%>?_method=DELETE">
 
@@ -32,8 +32,7 @@
 
                         </div>
 
-
-                        <p class="card-text mb-0"><%= review.comment %></p>
+                        <p class="card-text mb-0 mt-2"><%= review.comment %></p>
                         
                         <h6  class="text-end " style="font-size: x-small;"><%= review.created_at.toLocaleString().slice(0, 8) %></h6>
 
