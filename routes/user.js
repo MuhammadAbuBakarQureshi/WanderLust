@@ -29,7 +29,7 @@ router
     wrapAsync(userControllers.login)
   );
 
-  
+
 // logout requests
 
 router.get("/logout", userControllers.logout);
