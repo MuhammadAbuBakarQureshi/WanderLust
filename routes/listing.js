@@ -5,46 +5,39 @@ const listingController = require("../Controllers/listings");
 
 const router = express.Router();
 
-// GET requests
 
-router.get("/", wrapAsync(listingController.index));
+// Index and New listing route
 
+router
+  .route("/")
+  .get(wrapAsync(listingController.index))
+  .post(
+    isLoggedIn,
+    validateListing,
+    wrapAsync(listingController.createListing)
+  );
+
+  
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
-router.get("/:id", wrapAsync(listingController.showListing));
+// Update, Delete and Show listing route
+
+router
+  .route("/:id")
+  .put(isLoggedIn, isOwner, wrapAsync(listingController.updateListing))
+  .delete(
+    isLoggedIn,
+    isOwner,
+    wrapAsync(listingController.destroyListing)
+  )
+  .get(wrapAsync(listingController.showListing));
+  
 
 router.get(
   "/:id/edit",
   isLoggedIn,
   isOwner,
   wrapAsync(listingController.renderEditForm)
-);
-
-// POST requests
-
-router.post(
-  "/",
-  isLoggedIn,
-  validateListing,
-  wrapAsync(listingController.createListing)
-);
-
-// PUT requests
-
-router.put(
-  "/:id",
-  isLoggedIn,
-  isOwner,
-  wrapAsync(listingController.updateListing)
-);
-
-// DELETE requests
-
-router.delete(
-  "/:id",
-  isLoggedIn,
-  isOwner,
-  wrapAsync(listingController.destroyListing)
 );
 
 module.exports = router;
