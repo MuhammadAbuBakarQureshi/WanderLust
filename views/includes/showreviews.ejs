@@ -22,16 +22,20 @@
                                 </form>
 
                             <% } %>
-                            
 
                         </div>
 
-
                         <div style="display: flex;">
 
-                            <% for(let i = 0; i < review.rating; i++){ %>
+                            <% for(let i = 0; i < 5; i++){%>
+                        
+                                <% if(i < review.rating) {%>
 
-                                <h6 class="card-subtitle mb-1 text-body-secondary" style="font-size: x-small;">⭐</h6>
+                                    <i class="fa-solid fa-star checked"></i>
+                                <%} else{%>
+                        
+                                    <i class="fa-solid fa-star"></i>
+                                <% } %>
 
                             <% } %>
 
