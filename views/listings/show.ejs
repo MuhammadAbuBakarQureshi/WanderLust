@@ -53,14 +53,26 @@
 
     <% } %>
 
-    <hr>
+        
+    <% if(user) { %>
+        
+        <hr>
+        
+        <%- include("../includes/addreview.ejs") %>
+        
+        <br>
 
-    <%- include("../includes/addreview.ejs") %>
+    <% }%>
+    
+    
+    <% if(listing.reviews.length) { %>
 
-    <hr><br>
+        <hr>
 
-    <%- include("../includes/showreviews.ejs") %>
+        <%- include("../includes/showreviews.ejs") %>
 
-    <br> 
+        <br> 
+
+    <% } %>
 
 </body>
