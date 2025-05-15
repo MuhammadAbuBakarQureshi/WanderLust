@@ -130,3 +130,12 @@ body {
 
     }
 }
+
+
+
+/* Rating */
+
+.checked{
+
+    color: orange;
+}
