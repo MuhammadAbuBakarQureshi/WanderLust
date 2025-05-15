@@ -4,7 +4,8 @@ const Listing = require("../models/listing");
 const ExpressError = require("../utils/ExpressError");
 const wrapAsync = require("../utils/wrapAsync");
 
-const { validateListing, isLoggedIn, isOwner} = require("../middleware.js");
+const { validateListing, isLoggedIn, isOwner } = require("../middleware.js");
+const { populate } = require("../models/review.js");
 
 const router = express.Router();
 
@@ -18,20 +19,24 @@ router.get(
 );
 
 router.get("/new", isLoggedIn, (req, res) => {
-
   res.render("listings/new.ejs");
 });
 
 router.get(
   "/:id",
   wrapAsync(async (req, res) => {
-    
     let { id } = req.params;
 
-    const listing = await Listing.findById(id).populate("reviews").populate("owner");
+    const listing = await Listing.findById(id)
+      .populate({
+        path: "reviews",
+        populate: {
+          path: "author"
+        },
+      })
+      .populate("owner");
 
-    if(!listing){
-
+    if (!listing) {
       req.flash("error", "Listing not found 😢");
       return res.redirect("/listings");
     }
@@ -75,7 +80,6 @@ router.post(
   })
 );
 
-
 // PUT requests
 
 router.put(
@@ -108,7 +112,7 @@ router.put(
 router.delete(
   "/:id",
   isLoggedIn,
-  isOwner,  
+  isOwner,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
 
