@@ -28,6 +28,14 @@
                     <div class="invalid-feedback">Enter short description.</div>
                 </div>
 
+                <div class="form-control mb-3">
+
+                    <p>Listing current image</p>
+
+                    <img style="border-radius: 0.3rem;" src=<%= listing.image.url %> alt="">
+
+                </div>
+
                 <div class="mb-3">
                     <label for="image" class="form-label">Upload Listing Image</label>
                     <input type="file" name="listing[image]" class="form-control">
