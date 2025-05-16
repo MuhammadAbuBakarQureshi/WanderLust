@@ -63,6 +63,8 @@ const renderEditForm = async (req, res) => {
       return res.redirect("/listings");
     }
 
+    listing.image.url = listing.image.url.replace("/upload", "/upload/w_250");
+
     res.render("listings/edit.ejs", { listing });
 }
 
