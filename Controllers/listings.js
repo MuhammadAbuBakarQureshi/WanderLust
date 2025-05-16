@@ -68,19 +68,28 @@ const renderEditForm = async (req, res) => {
 
 const updateListing = async (req, res) => {
 
+    console.log(req.body, "\t", req.file);
+    
+
     if (!req.body) {
       throw new ExpressError(400, "Send valid data");
     }
 
     let { id } = req.params;
 
-    await Listing.findByIdAndUpdate(
+    let listing = await Listing.findByIdAndUpdate(
       id,
       { ...req.body.listing },
-      {
-        runValidators: true,
-      }
     );
+
+
+    if(typeof req.file !== "undefined"){
+
+        let url = req.file.path;
+        let filename = req.file.filename;
+        listing.image = {url, filename};
+        await listing.save();
+    }
 
     req.flash("success", "Listing updated successfully!");
 
