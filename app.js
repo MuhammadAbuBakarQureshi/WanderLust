@@ -1,5 +1,4 @@
-if(process.env.NODE_ENV != "production"){
-
+if (process.env.NODE_ENV != "production") {
   require("dotenv").config();
 }
 
@@ -20,7 +19,7 @@ const ExpressError = require("./utils/ExpressError");
 const wrapAsync = require("./utils/wrapAsync");
 
 const listingRouter = require("./routes/listing.js");
-const reviewRouter = require("./routes/reviews.js");
+const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
 const port = 8080;
@@ -59,31 +58,26 @@ passport.deserializeUser(User.deserializeUser());
 // Demo User
 
 app.get("/demouser", async (req, res) => {
-
   let fakeUser = new User({
-
     username: "bob",
-    email: "bob@gmail.com"
+    email: "bob@gmail.com",
   });
 
   let registeredUser = await User.register(fakeUser, "hello");
 
   console.log(registeredUser);
-  
-  res.send(registeredUser);  
-});
 
+  res.send(registeredUser);
+});
 
 // root
 
 app.use((req, res, next) => {
-
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   res.locals.user = req.user;
   next();
-})
-
+});
 
 app.get(
   "/",
@@ -107,7 +101,6 @@ app.use((req, res, next) => {
 ////////////// Middlewares
 
 app.use((err, req, res, next) => {
-  
   let { status = 500, message = "Something went wrong" } = err;
   res.status(status).render("listings/errors.ejs", { message });
 });
