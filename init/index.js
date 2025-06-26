@@ -9,7 +9,8 @@ const initDB = async  () => {
     
     listingdata.data = listingdata.data.map((obj) => ({
       ...obj,
-      owner: "68234d72d5553b3eaa969d1e",
+      owner: "685bb83ca6d4bb7f88783335", // change this ID if you want to change the user of all this dummy data
+
     }));
 
     await Listing.insertMany(listingdata.data)
