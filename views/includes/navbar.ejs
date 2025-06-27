@@ -5,9 +5,20 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
       <div class="navbar-nav">
         <a class="nav-link" href="/listings">Explore</a>
       </div>
+
+      <div class="navbar-nav ms-auto">
+
+          <form class="d-flex" method="GET" action="/listings">
+            <input class="custom-input" name="listingName" type="input" placeholder="Search" aria-label="Search">
+            <button class="btn search-button" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
+
+      </div>
+
 
       <div class="navbar-nav ms-auto">
 
@@ -25,6 +36,7 @@
         <% } %>
         
       </div>
+
     </div>
   </div>
 </nav>
