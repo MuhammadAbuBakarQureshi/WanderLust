@@ -6,30 +6,6 @@ body {
     min-height: 100vh;
 }
 
-.container {
-
-    flex: 1;
-}
-
-.navbar {
-
-    /* height: 4rem; */
-    background-color: white;
-}
-
-
-.fa-compass {
-
-    color: rgb(253, 38, 75);
-    scale: 2;
-    margin-left: 20px;
-}
-
-.nav-link {
-
-    color: #222222 !important;
-}
-
 /* Cards */
 
 
