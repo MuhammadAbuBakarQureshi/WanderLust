@@ -4,7 +4,17 @@ const ExpressError = require("../utils/ExpressError");
 
 const index = async (req, res) => {
 
-    let listings = await Listing.find();
+    const listingName = req.query.listingName;
+
+    let listings;
+
+    if(listingName){
+
+      listings = await Listing.find({title: listingName});
+    }else{
+
+      listings = await Listing.find();
+    }
 
     res.render("listings/index.ejs", { listings });
 }
