@@ -1,0 +1,67 @@
+
+.container {
+
+    flex: 1;
+}
+
+.navbar {
+
+    background-color: white;
+}
+
+
+.fa-compass {
+
+    color: rgb(253, 38, 75);
+    scale: 2;
+    margin-left: 20px;
+}
+
+.nav-link {
+
+    color: #222222 !important;
+}
+
+
+/* Search Bar */
+
+.d-flex{
+
+    border: 1px solid rgb(199, 198, 198);
+    border-radius: 2em;
+
+}
+
+.d-flex:has(input:focus){
+
+    border-color: rgb(253, 38, 75) !important;;
+}
+
+
+.custom-input{
+
+    border: none !important;
+    border-radius: 2em !important;
+    
+    color: #4d4c4c;
+
+    padding-left: 1em;
+}
+
+.custom-input:focus{
+
+    outline: none !important;
+}
+
+
+.search-button{
+
+    border-radius: 50% !important;
+    color: rgb(253, 38, 75) !important;
+}
+
+.search-button:hover{
+
+    color: white !important;
+    background-color: rgb(253, 38, 75) !important;
+}
