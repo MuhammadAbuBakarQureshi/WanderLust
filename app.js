@@ -82,9 +82,11 @@ app.use((req, res, next) => {
 app.get(
   "/",
   wrapAsync(async (req, res) => {
-    let listings = await Listing.find();
+    // let listings = await Listing.find();
 
-    res.render("listings/root.ejs", { listings });
+    // res.render("listings/root.ejs", { listings });
+
+    res.redirect("/listings");
   })
 );
 
