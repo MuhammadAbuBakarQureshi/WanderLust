@@ -1,5 +1,5 @@
 
-let taxSwitch = document.querySelector(".switch");
+let taxSwitch = document.querySelector("#flexSwitchCheckDefault");
 
 taxSwitch.addEventListener("click", () => {
 
