@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-sm bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+
+    <i class="fa-solid fa-magnifying-glass ms-auto nav-search-button"></i>
+    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -10,13 +13,13 @@
         <a class="nav-link" href="/listings">Explore</a>
       </div>
 
-      <div class="navbar-nav ms-auto">
+      <div class="navbar-nav ms-auto desktop">
 
           <form class="d-flex" method="GET" action="/listings">
             <input class="custom-input" name="listingName" type="input" placeholder="Search" aria-label="Search">
             <button class="btn search-button" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
           </form>
-
+ 
       </div>
 
 
@@ -40,3 +43,17 @@
     </div>
   </div>
 </nav>
+
+
+<div class="mobile-search mt-3">
+
+  <div class="ms-auto">
+
+      <form class="d-flex" method="GET" action="/listings">
+        <input class="custom-input" name="listingName" type="input" placeholder="Search" aria-label="Search">
+        <button class="btn search-button" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+
+  </div>
+
+</div>
