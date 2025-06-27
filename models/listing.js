@@ -4,11 +4,13 @@ const Review = require("./review");
 
 const Schema = mongoose.Schema;
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+//const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+
+const dbURL = process.env.ATlASDB_URL;
 
 async function main(){
 
-    await mongoose.connect(MONGO_URL);
+    await mongoose.connect(dbURL);
 }
 
 main().then((res) => {
