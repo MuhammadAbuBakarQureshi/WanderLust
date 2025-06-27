@@ -1,4 +1,8 @@
 {
+  "engines":{
+    "node": "22.17.0"
+  },
+
   "name": "404notyourhome",
   "version": "1.0.0",
   "description": "",
@@ -13,6 +17,7 @@
   "dependencies": {
     "cloudinary": "^1.41.3",
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^5.1.0",
     "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "ejs-mate": "^4.0.0",
