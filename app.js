@@ -1,4 +1,6 @@
-import 'dotenv/config';
+if (process.env.NODE_ENV != "production") {
+  require("dotenv").config();
+}
 
 const express = require("express");
 const path = require("path");
@@ -21,7 +23,7 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
-const port = process.env.PORT || 8080;
+const port = 8080;
 
 const app = express();
 
@@ -36,10 +38,6 @@ const store = MongoStore.create({
 
   touchAfter: 24 * 3600,
 })
-
-console.log("Mongo URL:", process.env.ATLASDB_URL);
-console.log("Secret:", process.env.SECRET);
-
 
 store.on("error", () => {
 
@@ -108,8 +106,7 @@ app.get(
 
     // res.render("listings/root.ejs", { listings });
 
-    // res.redirect("/listings");
-    res.send("Working fine");
+    res.redirect("/listings");
   })
 );
 
@@ -132,8 +129,6 @@ app.use((err, req, res, next) => {
 
 // Starts server
 
-// app.listen(port, () => {
-//   console.log(`App listening on port ${port}`);
-// });
-
-export default app;
+app.listen(port, () => {
+  console.log(`App listening on port ${port}`);
+});
