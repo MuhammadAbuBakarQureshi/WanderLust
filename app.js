@@ -133,5 +133,4 @@ app.use((err, req, res, next) => {
 //   console.log(`App listening on port ${port}`);
 // });
 
-
-module.exports = app;
+export default app;
