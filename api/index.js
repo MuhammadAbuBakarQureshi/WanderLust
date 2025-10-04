@@ -1,6 +1,5 @@
-import app from "../app.js";
-import serverless from "serverless-http";
+// api/index.js
+const app = require("../app"); // import your express app
+const serverless = require("serverless-http");
 
-
-export const handler = serverless(app);
-export default handler;
+module.exports = serverless(app);
