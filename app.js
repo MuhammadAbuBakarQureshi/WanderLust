@@ -106,7 +106,8 @@ app.get(
 
     // res.render("listings/root.ejs", { listings });
 
-    res.redirect("/listings");
+    // res.redirect("/listings");
+    res.send("Working fine");
   })
 );
 
