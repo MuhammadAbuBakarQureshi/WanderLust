@@ -1,6 +1,4 @@
-if (process.env.NODE_ENV != "production") {
-  require("dotenv").config();
-}
+import 'dotenv/config';
 
 const express = require("express");
 const path = require("path");
@@ -38,6 +36,10 @@ const store = MongoStore.create({
 
   touchAfter: 24 * 3600,
 })
+
+console.log("Mongo URL:", process.env.ATLASDB_URL);
+console.log("Secret:", process.env.SECRET);
+
 
 store.on("error", () => {
 
